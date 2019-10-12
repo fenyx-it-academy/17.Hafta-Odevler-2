@@ -18,7 +18,7 @@ while True:
     choice = input("\n\nPlease select a choice from the menu: ")
 
     if choice == "1":
-        country = input("\nEnter the country of which you want to see the capital: ").capitalize()
+        country = input("\nEnter the country of which you want to see the capital: ").title()
 
         cur.execute("SELECT city.Name FROM city, country "
                     "WHERE country.Name = ? "
@@ -37,7 +37,7 @@ while True:
             print(i[0], end=', ')
 
     elif choice == "3":
-        language = input("\nEnter a language to see the count of cities in which the language is spoken: ").capitalize()
+        language = input("\nEnter a language to see the count of cities in which the language is spoken: ").title()
         cur.execute("SELECT Count(city.Name) FROM city "
                    "INNER JOIN countrylanguage on countrylanguage.CountryCode = city.CountryCode "
                    "WHERE countrylanguage.Language = ?", (language,))
@@ -47,7 +47,7 @@ while True:
     elif choice == "4":
         region = input("\nEnter a region: ").title()
         language = input("\nEnter a language to see if the language is spoken in that "
-                         "\nregion and the countries in which the language is spoken: ").capitalize()
+                         "\nregion and the countries in which the language is spoken: ").title()
         cur.execute("SELECT country.Name FROM country, countrylanguage "
                    "WHERE country.Region = ? "
                    "AND country.Code = countrylanguage.CountryCode "
